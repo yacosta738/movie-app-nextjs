@@ -47,7 +47,7 @@ const MovieApp: FC  = ({ children }) => {
   const fetchMovies = async (searchValue: string) => {
     console.log('fetching movies');
     const response = await axios(
-      `http://localhost:3000/api/movies?s=${searchValue}`
+      `/api/movies?s=${searchValue}`
     );
     const data = response.data;
     setMovies(data.movies);
@@ -88,13 +88,10 @@ const MovieApp: FC  = ({ children }) => {
 
   const showDetails = async (id: string) => {
     const response = await axios(
-      `http://localhost:3000/api/movies/${id}`
+      `/api/movies/${id}`
     );
     const data = response.data;
     let movie: Movie = data.movie;
-    console.log("------------------------------------");
-    console.log(movie);
-    console.log("------------------------------------");
     setSelectedMovie(movie);
   };
 
