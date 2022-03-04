@@ -13,9 +13,9 @@ const Home: NextPage = () => {
   const handleSearch = (e: { target: { value: string; }; }) => {
     setSearch(e.target.value);
   };
-  const hashMap = new Map();
-  const rank =(movie: Movie[]) => {
-    const result: { movie:Movie, percentage: number }[] = [];
+  const hashMap = new Map<number, number>();
+  const rank = (movie: Movie[]) => {
+    const result: { movie: Movie, percentage: number }[] = [];
     movie.forEach(movie => {
       const ratings = movie.Ratings;
       console.log(ratings);
@@ -23,28 +23,46 @@ const Home: NextPage = () => {
         return acc + Number(Ratings.normalize(curr.Value));
       }, 0);
       const average = Math.round(percentage / ratings.length);
-      result.push({percentage:average, movie:movie});
+      result.push({percentage: average, movie: movie});
+      const repeated = hashMap.get(average);
+      if (repeated) {
+        hashMap.set(average, repeated + 1);
+      } else {
+        hashMap.set(average, 1);
+      }
     });
-    // sort by percentage
-    result.sort((a, b) => {
+    let rankPosition = 0;
+    let lastCount = 0;
+    // sort by percentage.
+    return result.sort((a, b) => {
       return b.percentage - a.percentage;
+    }).map(data => {
+      const count = hashMap.get(data.percentage);
+      // if the percentage is the same, then we need to add the rank position(the same for all the movies with the same percentage).
+      if (count && count > 1) {
+        if (count !== lastCount) {
+          rankPosition++;
+        }
+      } else {
+        rankPosition++;
+      }
+      lastCount = count? count : 0;
+      return {
+        movie: data.movie,
+        percentage: data.percentage,
+        ranking: rankPosition
+      };
+
     });
-    return result;
   };
   return (
       <Layout>
         <Search handleSearch={handleSearch}/>
         <div id="search-results" className="my-4 grid grid-cols-1 md:grid-cols-4 gap-2">
-          {rank(movies)?.map((data, index) => {
-            let ranking = hashMap.get(data.percentage);
-            if (rank === undefined) {
-              ranking = index + 1;
-              hashMap.set(data.percentage, ranking);
-            }
-            return(
-                <MovieCard key={index} movie={data.movie} percentage={data.percentage} ranking={hashMap.get(data.percentage)}/>
-            )
-          })}
+          {rank(movies)?.map((data, index) => (
+              <MovieCard key={index} movie={data.movie} percentage={data.percentage}
+                         ranking={data.ranking}/>
+          ))}
         </div>
         {movies?.length === 0 && (
             <div className="flex justify-center items-center mx-auto">
