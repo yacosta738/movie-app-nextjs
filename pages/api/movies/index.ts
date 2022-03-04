@@ -2,6 +2,7 @@
 import type {NextApiRequest, NextApiResponse} from 'next'
 import Movie from "../../../models/movie";
 import axios from 'axios';
+import {IRatings} from "../../../models/raitings";
 
 export default function handler(
     req: NextApiRequest,
@@ -31,6 +32,8 @@ export default function handler(
       imdbID: string;
       Type: string;
       Poster: string;
+      Ratings:IRatings[];
+      imdbRating: number;
       isFavorite: boolean;
     }) => {
       return new Movie(movie);

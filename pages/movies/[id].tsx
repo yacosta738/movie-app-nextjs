@@ -56,8 +56,10 @@ const MovieDetails = () => {
            <div className="px-4 mx-4">
              <h1 className="text-8xl font-black font-sans text-slate-700">{movie?.Title}</h1>
              <p className="text-gray-400 text-xl">{`${movie?.Runtime} - ${movie?.Year} - ${movie?.Rated}`}</p>
-             <p className="text-gray-400 text-3xl my-4 flex items-center"><span
-                 className="text-black border-2 border-gray-400 bg-amber-300 rounded-md p-2 font-extrabold mr-4">IMDb</span> 8/10
+             <p className="text-gray-400 text-3xl my-4 flex items-center">
+               <span
+                 className="text-black border-2 border-gray-400 bg-amber-300 rounded-md p-2 font-extrabold mr-4">IMDb </span>
+               {`${movie?.imdbRating}/10`}
              </p>
              <div className="my-4">
                <h4 className="text-4xl text-gray-400 font-bold my-4">Overview</h4>

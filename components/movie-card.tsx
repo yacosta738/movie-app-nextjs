@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {MovieContext} from "../context/MovieContext";
 import Movie from "../models/movie";
 
-export const MovieCard = (props: { movie: Movie }) => {
+export const MovieCard = (props: { movie: Movie, percentage: number, ranking: number }) => {
   const {favoriteHandler} = useContext(MovieContext);
   return (
       <div className="relative search-result">
@@ -44,6 +44,8 @@ export const MovieCard = (props: { movie: Movie }) => {
                 layout="responsive"
             />
           </Link>
+          <span className="text-xs text-gray-600">Percentage: {props.percentage}</span>
+          <span className="text-xs text-gray-600"> Ranking: {props.ranking}</span>
         </div>
       </div>
   );

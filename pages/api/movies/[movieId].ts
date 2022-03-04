@@ -12,8 +12,6 @@ export default function handler(
   axios.get(`https://www.omdbapi.com/?apikey=${process.env.API_KEY}&i=${movieId}`)
   .then(response => {
     const {data} = response;
-    console.log("LA data", data);
-    console.log(data);
     const movie = new Movie(data);
     res.status(200).json({movie});
   })

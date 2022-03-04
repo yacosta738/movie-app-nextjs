@@ -37,11 +37,18 @@ const MovieApp: FC  = ({ children }) => {
     Genre: "",
     Language: "",
     Plot: "",
+    Poster: "",
     Rated: "",
+    Ratings: [],
     Released: "",
     Runtime: "",
+    Title: "",
+    Type: "",
     Writer: "",
-    Poster: "", Title: "", Type: "", Year: "", imdbID: "", isFavorite: false
+    Year: "",
+    imdbID: "",
+    imdbRating: 0,
+    isFavorite: false
   });
 
   const fetchMovies = async (searchValue: string) => {
@@ -50,7 +57,11 @@ const MovieApp: FC  = ({ children }) => {
       `/api/movies?s=${searchValue}`
     );
     const data = response.data;
-    setMovies(data.movies);
+    // search for the datails of the movie
+    let ids = data.movies.map((movie: Movie) => movie.imdbID);
+    const details = await Promise.all(ids.map((id:string) => axios(`/api/movies/${id}`)));
+    const moviesWithDetails = data.movies.map((movie: any, index: number) => details[index].data.movie);
+    setMovies(moviesWithDetails);
   };
 
   const removeFavoriteMovie = (movie: Movie) => {
