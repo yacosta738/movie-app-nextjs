@@ -1,0 +1,28 @@
+yarn run v1.22.22
+$ next dev
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+✓ Ready in 701ms
+○ Compiling / ...
+ GET / 200 in 3.7s (compile: 3.7s, render: 64ms)
+API resolved without sending a response for /api/movies?s=Du, this may result in stalled requests.
+API resolved without sending a response for /api/movies?s=D, this may result in stalled requests.
+API resolved without sending a response for /api/movies?s=, this may result in stalled requests.
+API resolved without sending a response for /api/movies?s=Dun, this may result in stalled requests.
+API resolved without sending a response for /api/movies?s=Dune, this may result in stalled requests.
+ GET /api/movies?s=Du 500 in 338ms (compile: 124ms, render: 214ms)
+ GET /api/movies?s=D 500 in 335ms (compile: 185ms, render: 150ms)
+ GET /api/movies?s= 500 in 338ms (compile: 197ms, render: 142ms)
+ GET /api/movies?s=Dune 500 in 107ms (compile: 14ms, render: 93ms)
+ GET /api/movies?s=Dun 500 in 127ms (compile: 8ms, render: 120ms)
+ GET / 200 in 75ms (compile: 39ms, render: 36ms)
+ GET /api/movies?s= 500 in 91ms (compile: 8ms, render: 84ms)
+ GET / 200 in 30ms (compile: 5ms, render: 26ms)
+ GET /api/movies?s= 500 in 86ms (compile: 1774µs, render: 85ms)
+ GET / 200 in 27ms (compile: 5ms, render: 22ms)
+ GET /api/movies?s= 500 in 99ms (compile: 2ms, render: 97ms)
+error Command failed with signal "SIGKILL".
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

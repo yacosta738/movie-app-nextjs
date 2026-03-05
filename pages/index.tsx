@@ -72,7 +72,10 @@ const Home: NextPage = () => {
                     alt="No movies found"
                     width={200}
                     height={200}
-                    layout="responsive"
+                    style={{
+                      width: '100%',
+                      height: 'auto',
+                    }}
                     className="mx-auto"
                 />
                 <h4 className="text-center text-xl">Don’t know what to search?</h4>

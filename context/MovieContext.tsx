@@ -1,4 +1,4 @@
-import React, {createContext, useState, useEffect, FC} from 'react';
+import React, {createContext, useState, useEffect, FC, ReactNode} from 'react';
 import axios from 'axios';
 import Movie from "../models/movie";
 interface IMoviesContextState {
@@ -26,7 +26,12 @@ const contextDefaultValues: IMoviesContextState = {
 };
 
 export const MovieContext = createContext<IMoviesContextState>(contextDefaultValues);
-const MovieApp: FC  = ({ children }) => {
+
+interface MovieAppProps {
+  children: ReactNode;
+}
+
+const MovieApp: FC<MovieAppProps> = ({ children }) => {
   const [favorites, setFavorites] = useState<Movie[]>([]);
   const [movies, setMovies] = useState<Movie[]>([]);
   const [search, setSearch] = useState('');

@@ -1,9 +1,9 @@
 import Navbar from './navbar'
 import Footer from './footer'
 import Head from "next/head";
+import { ReactNode } from "react";
 
-// @ts-ignore
-export default function Layout({children}) {
+export default function Layout({children}: {children: ReactNode}) {
   return (
       <>
         <div className="md:container mx-2 md:mx-auto">

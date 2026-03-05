@@ -49,7 +49,10 @@ const MovieDetails = () => {
                 alt={movie?.Title}
                 width={200}
                 height={300}
-                layout="responsive"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
             />
           </div>
           <div className="mx-4 md:container">

@@ -41,7 +41,10 @@ export const MovieCard = (props: { movie: Movie, percentage: number, ranking: nu
                 alt={props.movie?.Title}
                 width={200}
                 height={300}
-                layout="responsive"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                }}
             />
           </Link>
           <span className="text-xs text-gray-600">Percentage: {props.percentage}</span>
